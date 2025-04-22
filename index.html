@@ -76,6 +76,27 @@
       color: #ffffff;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     }
+    @media screen and (max-width: 768px) {
+      .headline-text {
+        font-size: 2.5rem;
+      }
+
+      .sub-text {
+        font-size: 1rem;
+      }
+
+      .portfolio-caption {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 30px 0;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-100 text-black">
@@ -89,7 +110,23 @@
       <a href="#portfolio" class="text-gray-700 hover:text-purple-600 transition duration-300">Portfolio</a>
       <a href="#contact" class="text-gray-700 hover:text-purple-600 transition duration-300">Contact</a>
     </div>
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-gray-700 hover:text-purple-600 transition duration-300">
+        &#9776;
+      </button>
+    </div>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white fixed top-0 left-0 w-full h-full z-50 flex justify-center items-center">
+    <div class="text-center space-y-4">
+      <a href="#home" class="block text-lg text-gray-700 hover:text-purple-600 transition duration-300">Home</a>
+      <a href="#about" class="block text-lg text-gray-700 hover:text-purple-600 transition duration-300">About</a>
+      <a href="#portfolio" class="block text-lg text-gray-700 hover:text-purple-600 transition duration-300">Portfolio</a>
+      <a href="#contact" class="block text-lg text-gray-700 hover:text-purple-600 transition duration-300">Contact</a>
+      <button id="close-mobile-menu" class="mt-4 text-gray-700 hover:text-purple-600">Close</button>
+    </div>
+  </div>
 
   <!-- Home Section -->
   <section id="home" class="cosmic-background relative text-center text-white px-10 mt-20 overflow-hidden">
@@ -190,6 +227,14 @@
 
     sections.forEach(section => {
       observer.observe(section);
+    });
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('close-mobile-menu').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('hidden');
     });
   </script>
 </body>
