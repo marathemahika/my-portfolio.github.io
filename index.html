@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahika | My Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;600&display=swap');
+
+    .cosmic-background {
+      background: url('https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Ds') center center fixed;
+      background-size: cover;
+      height: 110vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-background {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.2));
+      padding: 50px 0;
+    }
+
+    .headline-text {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 3rem;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    .sub-text {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      line-height: 1.8;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 2s ease-out forwards;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    section.visible {
+      opacity: 1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: #ffffff;
+      z-index: 1000;
+    }
+
+    /* Custom font for portfolio image captions */
+    .portfolio-caption {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-black">
+
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center">
+    <h1 class="text-3xl font-semibold text-purple-600">Mahika</h1>
+    <div class="space-x-8 text-lg">
+      <a href="#home" class="text-gray-700 hover:text-purple-600 transition duration-300">Home</a>
+      <a href="#about" class="text-gray-700 hover:text-purple-600 transition duration-300">About</a>
+      <a href="#portfolio" class="text-gray-700 hover:text-purple-600 transition duration-300">Portfolio</a>
+      <a href="#contact" class="text-gray-700 hover:text-purple-600 transition duration-300">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="cosmic-background relative text-center text-white px-10 mt-20 overflow-hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-0"></div>
+    <div class="relative z-10 animate-fade-in-up">
+      <h1 class="headline-text mb-4">Hi, I'm Mahika Marathe</h1>
+      <p class="sub-text mb-6">Engineering Student | Dancer | Dreamer</p>
+      <a href="#about" class="inline-block bg-purple-600 text-white px-6 py-3 rounded-full text-lg transition duration-300 hover:bg-purple-500 hover:scale-105 shadow-lg">Explore</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-background mx-8 mt-20 pt-20">
+    <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 px-4">
+      <img src="https://media-hosting.imagekit.io/9316d26daa744e6d/WhatsApp%20Image%202024-12-14%20at%2023.38.32_27aac51b%20(2)%20(1).jpg?Expires=1839939530&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=XASTAP9Q0lYz7Yp6ZhckTL8qPyezIEANThy1sco-7cKkbWPoJ8f~QsgPAczmTgIuEYZJJhRc58uskussSEOljKwQd-JYqW34woyVXBAF8PiuYuu1kMCLhSbGyHyf9lEz3lN6qAqOuVOMN07YPaDlkqPQjgtqzlciX0UsHy6k-jIdrctvTZB1A5hok~eIKBQ88eDmAQEUBN1zajEuDhxls97osQjSR0xD83tlcaTFcDLnOXkt8Frt0VBzDkNx4n-WuS~qORqFj1Qnz2NoiRybFvRHGqiJ9XxzfCFvabfAX3ixVzXqV8FmT5XFapTYV7Yqyy0KqkwQZ5-1a~JhHQUQKA__" alt="Mahika" class="w-96 rounded-lg shadow-lg" />
+      <div class="text-center md:text-left">
+        <h2 class="text-4xl font-bold text-purple-600 mb-6">About Me</h2>
+        <p class="text-lg leading-relaxed max-w-3xl">
+          Hi, I'm Mahika! I’ve always been fascinated by space and the boundless opportunities technology provides to explore and understand the universe. As a Computer Engineering student, I’m passionate about how technology can not only solve real-world problems but also spark innovation and shape the future. I’m particularly excited about the potential of emerging technologies and how they can transform industries and everyday life.  
+          <br /><br />
+          Dance has been an important part of my life, offering a creative outlet for expression and movement. While my main focus is on technology, I continue to find inspiration in dance, especially in how both technology and dance can communicate complex ideas and emotions in unique ways. I enjoy blending my interests in tech, space, and dance to create meaningful and innovative experiences.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="py-20 bg-gradient-to-r from-indigo-200 via-purple-200 to-indigo-300 pt-20">
+    <h2 class="text-4xl font-bold text-center text-purple-600 mb-10">My Interests</h2>
+    <div class="overflow-x-auto whitespace-nowrap px-4">
+      <div class="inline-flex gap-6">
+
+        <!-- Image Card 1 -->
+        <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
+          <img src="https://media-hosting.imagekit.io/3cc54013482845b1/Graceful%20Dance%20in%20Golden%20Light.png?Expires=1839949524&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ut9D7suvaXw79SRhQq7dyE678wEYAjgQgr~kNv9lt3d17OkvU1mFmeVG4dlAkPJB8qG8xXTeDwsdERp6T3mJGbisR8ralU7zH7~M0OUIr8qxv04bSu2bNpouiZV8UmXXKCTRg8sp2x8KwWJVzB-EA8qDtwJ5azw1MRdp7~fHO-8DF6IiyDliyyKeiUDiwc5IW1IIL0Heu0e8mvTPTNd-NGRE~fDyBzPu2M3G2~Rorl9jgjjwjy1vpswLkNF6UiUc6pJ~OUWufjSkZGCgCM0HpsPgs15igrMEbe3ggM4SVahSXjoIjfo24tzn~~VPXOdFOa0gchDX~ndrRDvG7MYDfQ__" alt="Interactive Dance App" class="rounded mb-4 w-full h-auto">
+          <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p class="portfolio-caption text-center">Dancing with Heart</p>
+          </div>
+        </div>
+
+        <!-- Image Card 2 -->
+        <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
+          <img src="https://media-hosting.imagekit.io/141abba51f6f498c/5.-Joshua-Tree-Riverside-County-California-e1570547634605.jpg?Expires=1839944520&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mFzF9ynUn9ThkELfryIExuaaJsozpM9V0YY~xQwPr0L10u0qCylj8AUMxLbpF7Mz7yVpO36QCdtmEr1yYaeoLKL4M6IJ41b4b3V-XFjHAsBQnok0yGhYrym1xSDmBMEM4s7NW2BcUCsMFvxi8M2~TLxtZJYqTLVQTpVPVpQtCqPa6ISaeTXywlTAKbOBUFEr23sYvobvRYIs48u70gir2wrYxBs5Mm4JAHujQYyctFgV8QPJOAjA74X9WQUGTjYEkZ8BytKR-AanGdXU~Nw0~WbGKG5z1AKyeiEcuvnLOtXLYKeKDTXO22d1O9RZzOgoZ3oWUM1mgdsQ1cEKl2QoUg__">
+          <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p class="portfolio-caption text-center">The stars are fascinating</p>
+          </div>
+        </div>
+
+        <!-- Image Card 3 -->
+        <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
+          <img src="https://media-hosting.imagekit.io/bd28f73f15814465/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNTk3ZGVzaWduLWMtbnVubnktMDAzLmpwZw(1).jpg?Expires=1839943202&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ruWOXIzX9lZ9LT0WmT4MfWU2WxXfB9S14FBzN3OfR-aBt7n4Tg3OOHtv109NA8PtJowYA-Fdl2Fba4~i4orexlB2PJUlyWkWMkDvVHSadB7MrnUiSWcHz41dYfWMaPUpvxwfgan9NTvOLmYVncBiATn~v9m8itQa5DZhosUIshv~o~FBadD-Gr2gYFas3sm0~UZocr8yUroZjew45bmmsr6XNP6Rp0zXUxVrbPCPijAHsO1K-cSjUipiW7wPasZdXrJRt9Ci6CGfxLTOwZ4wDm2vrxYWzW-wTlJgUrsS9-IhyW4X4MxGo7tRi0pm34skpwn3b-ZJud3sJZh-FdefBw__">
+          <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p class="portfolio-caption text-center">Music bringing Peace</p>
+          </div>
+        </div>
+
+        <!-- Image Card 4 -->
+        <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
+          <img src="https://media-hosting.imagekit.io/bea3c0853af04c50/WhatsApp%20Image%202025-04-22%20at%2021.16.16_f3d59a66(1).jpg?Expires=1839944932&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JDzn7~7~Ac9bSPaxZhhTxQFXaJRW2~z0jT69mu8kQ22ofbzGwdrg~v2FwyktrMVp-1d2ObbCOxyOUCAc~WfI4VCJE0DkHKR8HHYwsftaAjdlBYhZq6tBKBqbqdPz~kcevnARXPRLIFd2QYTntAocZSAuoMSYjZcQOmD5SIjIac11B~OC2dv3XDB5ly0I-E27qvEt6mFGyNaYtS~ukCnLlGqSETJgGK0u1oWqpsfmOSwuXLiqs9Urcl32XYNAa1c29hckw~ocrMsLeXKpbTDxyAH4f2juTv5FBBVfbJwwnZOcrvNTYS-sSZmakw10jGcFQOpdoObZagv~deTqNEd5xA__">
+          <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p class="portfolio-caption text-center">Climbing new heights</p>
+          </div>
+        </div>
+
+        <!-- Image Card 5 -->
+        <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
+          <img src="https://media-hosting.imagekit.io/a78c9a702e704494/aesthetic-book-pictures-gl5fohbknw1j6r0z(1).jpg?Expires=1839950777&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=PCs3-GnNZBnuBtFFRsu01g9wfmwBAF0-U2MWmZmZjX2WPrRAMpdo4nsETV1oF1mSQH5~OklswAt442G18cZhUxWLGg-Nz4F45~57Z7WuNrBdmZQJRJrB7bSfZwXuQ7PT5mMTVSjSa277GBEvs9ZdtNDspRym6S21Lcq5Y~g9qycTaQIVFCJjQq8RAiHgTGqXl6m1Nu9crJU8FfVJSRWqFzM-yszBY9wfcH5GdYbSQk1fg85OXkJ1GDCIDTktkSkt8HNa~DYob-Y7gBJemdfLnpn~77Op3d8jugxfw6z4Ntei-MvmpwhMjMcLxst9p9Jwnje8ShGdvLz1UCGp1FyWCA__">
+          <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <p class="portfolio-caption text-center">My escape in every page</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-gradient-to-r from-indigo-100 via-purple-200 to-indigo-300 py-20">
+    <h2 class="text-4xl font-bold text-center text-purple-600 mb-10">Contact</h2>
+    <form action="#" method="POST" class="max-w-xl mx-auto">
+      <input type="text" name="name" placeholder="Your Name" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
+      <input type="email" name="email" placeholder="Your Email" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
+      <textarea name="message" placeholder="Your Message" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" rows="5" required></textarea>
+      <button type="submit" class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white text-lg hover:bg-purple-500">Send Message</button>
+    </form>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll('section');
+    const options = { threshold: 0.5 };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
