@@ -1,0 +1,103 @@
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;600&display=swap');
+
+/* Global Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-gray-100 text-black; /* Integration with Tailwind classes if needed */
+}
+
+/* Section Transitions */
+section {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+section.visible {
+  opacity: 1;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+/* Backgrounds */
+.cosmic-background {
+  background: url('https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Ds') center center fixed;
+  background-size: cover;
+  height: 110vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-background {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.2));
+  padding: 50px 0;
+}
+
+/* Typography */
+.headline-text {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.sub-text {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  line-height: 1.8;
+}
+
+.portfolio-caption {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 2s ease-out forwards;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .headline-text {
+    font-size: 2.5rem;
+  }
+
+  .sub-text {
+    font-size: 1rem;
+  }
+
+  .portfolio-caption {
+    font-size: 1rem;
+  }
+
+  section {
+    padding: 30px 0;
+  }
+
+  nav {
+    padding: 1rem;
+  }
+}
