@@ -64,10 +64,26 @@
   </section>
 
   <!-- Portfolio Section -->
-  <section id="portfolio" class="py-20 bg-gradient-to-r from-indigo-200 via-purple-200 to-indigo-300 pt-20">
-    <h2 class="text-4xl font-bold text-center text-purple-600 mb-10">My Interests</h2>
-    <div class="overflow-x-auto whitespace-nowrap px-4">
-      <div class="inline-flex gap-6">
+  <section id="portfolio" class="py-20 bg-gradient-to-r from-indigo-200 via-purple-200 to-indigo-300 pt-20 relative">
+  <h2 class="text-4xl font-bold text-center text-purple-600 mb-10">My Interests</h2>
+
+  <!-- Left Arrow -->
+  <button
+    onclick="scrollPortfolio(-300)"
+    class="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/60 backdrop-blur rounded-full p-3 shadow transition">
+    ‹
+  </button>
+
+  <!-- Right Arrow -->
+  <button
+    onclick="scrollPortfolio(300)"
+    class="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/60 backdrop-blur rounded-full p-3 shadow transition">
+    ›
+  </button>
+
+  <!-- Scroll Container -->
+  <div id="portfolio-scroll" class="overflow-hidden px-12">
+    <div class="inline-flex gap-6 transition-all">
 
         <!-- Image Card 1 -->
         <div class="w-72 shrink-0 bg-white p-4 rounded-lg shadow-lg relative group">
