@@ -1,27 +1,31 @@
-/* Import Fonts */
+/* =========================
+   IMPORT FONTS
+   ========================= */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Open+Sans:wght@300;400;600&family=Poppins:wght@400;600&display=swap');
 
-/* Global Styles */
+/* =========================
+   GLOBAL
+   ========================= */
 html {
   scroll-behavior: smooth;
 }
 
-/* Body */
 body {
   background-color: #f3f4f6; /* gray-100 */
-  color: #000000;
+  color: #000;
+  margin: 0;
 }
 
 /* =========================
-   SECTION VISIBILITY FIX
+   SECTION VISIBILITY
    ========================= */
 
-/* Do NOT hide sections by default */
+/* Never hide sections by default */
 section {
   opacity: 1;
 }
 
-/* Optional fade-in animation (ONLY if you later add JS) */
+/* Optional fade-in if you later add JS */
 section.visible {
   opacity: 1;
   transition: opacity 1.5s ease-in-out;
@@ -30,7 +34,6 @@ section.visible {
 /* =========================
    NAVIGATION
    ========================= */
-
 nav {
   position: fixed;
   top: 0;
@@ -44,9 +47,9 @@ nav {
 /* =========================
    BACKGROUNDS
    ========================= */
-
 .cosmic-background {
-  background: url('https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?q=80&w=2070&auto=format&fit=crop') center center fixed;
+  background: url('https://images.unsplash.com/photo-1457365050282-c53d772ef8b2?q=80&w=2070&auto=format&fit=crop')
+    center center fixed;
   background-size: cover;
   height: 110vh;
   display: flex;
@@ -66,7 +69,6 @@ nav {
 /* =========================
    TYPOGRAPHY
    ========================= */
-
 .headline-text {
   font-family: 'Quicksand', sans-serif;
   font-size: 3rem;
@@ -90,22 +92,29 @@ nav {
 }
 
 /* =========================
-   PORTFOLIO FIXES
+   PORTFOLIO SECTION
    ========================= */
-
 #portfolio {
   position: relative;
   overflow: visible;
 }
 
-/* Horizontal scroll */
+/* Horizontal scrolling container */
 #portfolio .overflow-x-auto {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+
+  /* Hide scrollbar */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
 }
 
-/* Prevent wrapping */
+#portfolio .overflow-x-auto::-webkit-scrollbar {
+  display: none;                /* Chrome / Safari */
+}
+
+/* Prevent card wrapping */
 #portfolio .flex,
 #portfolio .inline-flex {
   flex-wrap: nowrap;
@@ -116,7 +125,7 @@ nav {
   flex-shrink: 0;
 }
 
-/* Uniform image sizing */
+/* Consistent image size */
 #portfolio img {
   width: 100%;
   height: 24rem; /* 384px */
@@ -124,10 +133,14 @@ nav {
   display: block;
 }
 
-/* =========================
-   ARROW STYLES (HTML-only)
-   ========================= */
+/* Prevent vertical jump on anchor click */
+#portfolio [id^="card"] {
+  scroll-margin-top: 120px; /* match nav height */
+}
 
+/* =========================
+   ARROW STYLES
+   ========================= */
 #portfolio a[href^="#card"] {
   position: absolute;
   top: 50%;
@@ -152,6 +165,8 @@ nav {
   color: #4c1d95;
 
   text-decoration: none;
+  cursor: pointer;
+
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -165,7 +180,7 @@ nav {
   right: 16px;
 }
 
-/* Hover effect */
+/* Arrow hover */
 #portfolio a[href^="#card"]:hover {
   background: rgba(255, 255, 255, 0.55);
   transform: translateY(-50%) scale(1.05);
@@ -174,7 +189,6 @@ nav {
 /* =========================
    ANIMATIONS (OPTIONAL)
    ========================= */
-
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -193,7 +207,6 @@ nav {
 /* =========================
    RESPONSIVE
    ========================= */
-
 @media screen and (max-width: 768px) {
   .headline-text {
     font-size: 2.5rem;
