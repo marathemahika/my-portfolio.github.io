@@ -4,26 +4,30 @@ const contactList = document.getElementById("contactList");
 let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 let editIndex = null;
 
-// Render contacts to screen
+// Render contacts
 function renderContacts() {
     contactList.innerHTML = "";
 
     contacts.forEach((contact, index) => {
         const div = document.createElement("div");
-        div.className = "p-3 bg-gray-200 rounded";
+        div.className = "p-4 bg-gray-100 rounded-lg";
 
         div.innerHTML = `
             <p><strong>Name:</strong> ${contact.name}</p>
             <p><strong>Email:</strong> ${contact.email}</p>
             <p><strong>Phone:</strong> ${contact.phone}</p>
-            <button onclick="editContact(${index})"
-                class="mt-2 mr-2 bg-yellow-400 px-3 py-1 rounded">
-                Edit
-            </button>
-            <button onclick="deleteContact(${index})"
-                class="mt-2 bg-red-500 text-white px-3 py-1 rounded">
-                Delete
-            </button>
+
+            <div class="mt-3 space-x-2">
+                <button onclick="editContact(${index})"
+                    class="px-3 py-1 bg-yellow-400 rounded">
+                    Edit
+                </button>
+
+                <button onclick="deleteContact(${index})"
+                    class="px-3 py-1 bg-red-500 text-white rounded">
+                    Delete
+                </button>
+            </div>
         `;
 
         contactList.appendChild(div);
@@ -32,7 +36,7 @@ function renderContacts() {
     localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
-// Add or update contact
+// Add or Update Contact
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -41,7 +45,7 @@ form.addEventListener("submit", function (e) {
     const phone = document.getElementById("phone").value.trim();
 
     if (!name || !email || !phone) {
-        alert("Please fill all fields.");
+        alert("All fields are required.");
         return;
     }
 
@@ -58,13 +62,13 @@ form.addEventListener("submit", function (e) {
     renderContacts();
 });
 
-// Delete function
+// Delete
 function deleteContact(index) {
     contacts.splice(index, 1);
     renderContacts();
 }
 
-// Edit function
+// Edit
 function editContact(index) {
     const contact = contacts[index];
 
@@ -75,5 +79,5 @@ function editContact(index) {
     editIndex = index;
 }
 
-// Load contacts when page opens
+// Load contacts on page open
 renderContacts();
