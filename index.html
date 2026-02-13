@@ -173,39 +173,22 @@
 
 
   <!-- Contact Section -->
-  <section id="contact" class="bg-gradient-to-r from-indigo-100 via-purple-200 to-indigo-300 py-20">
-    <h2 class="text-4xl font-bold text-center text-purple-600 mb-10">Contact</h2>
-    <form action="#" method="POST" class="max-w-xl mx-auto">
-      <input type="text" name="name" placeholder="Your Name" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
-      <input type="email" name="email" placeholder="Your Email" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
-      <textarea name="message" placeholder="Your Message" class="block w-full mb-4 p-4 rounded-lg border border-gray-300" rows="5" required></textarea>
-      <button type="submit" class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white text-lg hover:bg-purple-500">Send Message</button>
-    </form>
-  </section>
+  <form class="max-w-xl mx-auto">
+  <input id="contact-name" type="text" placeholder="Name" class="block w-full mb-4 p-4 rounded-lg border" />
+  <input id="contact-email" type="email" placeholder="Email" class="block w-full mb-4 p-4 rounded-lg border" />
+  <input id="contact-phone" type="number" placeholder="Phone Number" class="block w-full mb-4 p-4 rounded-lg border" />
+  
+  <button id="add-contact" class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white">
+    Add Contact
+  </button>
+</form>
 
-  <script>
-    const sections = document.querySelectorAll('section');
-    const options = { threshold: 0.5 };
+<input id="search-contact" type="text" placeholder="Search contacts..." 
+       class="block w-full max-w-xl mx-auto mt-6 mb-4 p-3 rounded-lg border" />
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, options);
+<ul id="contact-list" class="max-w-xl mx-auto mt-4"></ul>
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-    // Mobile Menu Toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
+<script src="script.js"></script>
 
-    document.getElementById('close-mobile-menu').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.add('hidden');
-    });
-  </script>
 </body>
 </html>

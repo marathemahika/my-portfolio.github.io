@@ -1,83 +1,130 @@
-const form = document.getElementById("contactForm");
-const contactList = document.getElementById("contactList");
+// ===== Contact Manager =====
+
+// Select elements
+const nameInput = document.getElementById("contact-name");
+const emailInput = document.getElementById("contact-email");
+const phoneInput = document.getElementById("contact-phone");
+const addBtn = document.getElementById("add-contact");
+const contactList = document.getElementById("contact-list");
+const searchInput = document.getElementById("search-contact");
 
 let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 let editIndex = null;
 
-// Render contacts
-function renderContacts() {
-    contactList.innerHTML = "";
-
-    contacts.forEach((contact, index) => {
-        const div = document.createElement("div");
-        div.className = "p-4 bg-gray-100 rounded-lg";
-
-        div.innerHTML = `
-            <p><strong>Name:</strong> ${contact.name}</p>
-            <p><strong>Email:</strong> ${contact.email}</p>
-            <p><strong>Phone:</strong> ${contact.phone}</p>
-
-            <div class="mt-3 space-x-2">
-                <button onclick="editContact(${index})"
-                    class="px-3 py-1 bg-yellow-400 rounded">
-                    Edit
-                </button>
-
-                <button onclick="deleteContact(${index})"
-                    class="px-3 py-1 bg-red-500 text-white rounded">
-                    Delete
-                </button>
-            </div>
-        `;
-
-        contactList.appendChild(div);
-    });
-
-    localStorage.setItem("contacts", JSON.stringify(contacts));
+// Save to localStorage
+function saveToStorage() {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
-// Add or Update Contact
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+// Render contacts
+function renderContacts(filter = "") {
+  contactList.innerHTML = "";
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
+  contacts
+    .filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.email.toLowerCase().includes(filter.toLowerCase())
+    )
+    .forEach((contact, index) => {
+      const li = document.createElement("li");
+      li.className =
+        "bg-white p-4 mb-3 rounded-lg shadow flex justify-between items-center";
+      li.setAttribute("draggable", true);
+      li.dataset.index = index;
 
-    if (!name || !email || !phone) {
-        alert("All fields are required.");
-        return;
-    }
+      li.innerHTML = `
+        <div>
+          <p><strong>Name:</strong> ${contact.name}</p>
+          <p><strong>Email:</strong> ${contact.email}</p>
+          <p><strong>Phone:</strong> ${contact.phone}</p>
+        </div>
+        <div class="space-x-2">
+          <button class="edit-btn bg-yellow-400 px-3 py-1 rounded text-white">Edit</button>
+          <button class="delete-btn bg-red-500 px-3 py-1 rounded text-white">Delete</button>
+        </div>
+      `;
 
-    const newContact = { name, email, phone };
+      // Delete
+      li.querySelector(".delete-btn").addEventListener("click", () => {
+        contacts.splice(index, 1);
+        saveToStorage();
+        renderContacts(searchInput.value);
+      });
 
-    if (editIndex === null) {
-        contacts.push(newContact);
-    } else {
-        contacts[editIndex] = newContact;
-        editIndex = null;
-    }
+      // Edit
+      li.querySelector(".edit-btn").addEventListener("click", () => {
+        nameInput.value = contact.name;
+        emailInput.value = contact.email;
+        phoneInput.value = contact.phone;
+        editIndex = index;
+        addBtn.textContent = "Update Contact";
+      });
 
-    form.reset();
-    renderContacts();
+      contactList.appendChild(li);
+    });
+}
+
+// Add / Update Contact
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const phone = phoneInput.value.trim();
+
+  if (!name || !email || !phone) {
+    alert("All fields are required.");
+    return;
+  }
+
+  const contactData = { name, email, phone };
+
+  if (editIndex !== null) {
+    contacts[editIndex] = contactData;
+    editIndex = null;
+    addBtn.textContent = "Add Contact";
+  } else {
+    contacts.push(contactData);
+  }
+
+  saveToStorage();
+  renderContacts(searchInput.value);
+
+  nameInput.value = "";
+  emailInput.value = "";
+  phoneInput.value = "";
 });
 
-// Delete
-function deleteContact(index) {
-    contacts.splice(index, 1);
-    renderContacts();
-}
+// Search Feature
+searchInput.addEventListener("input", () => {
+  renderContacts(searchInput.value);
+});
 
-// Edit
-function editContact(index) {
-    const contact = contacts[index];
+// Drag and Drop Reordering
+let draggedIndex = null;
 
-    document.getElementById("name").value = contact.name;
-    document.getElementById("email").value = contact.email;
-    document.getElementById("phone").value = contact.phone;
+contactList.addEventListener("dragstart", (e) => {
+  draggedIndex = e.target.dataset.index;
+});
 
-    editIndex = index;
-}
+contactList.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
 
-// Load contacts on page open
+contactList.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const targetIndex = e.target.closest("li").dataset.index;
+
+  if (draggedIndex !== null && targetIndex !== null) {
+    const draggedItem = contacts.splice(draggedIndex, 1)[0];
+    contacts.splice(targetIndex, 0, draggedItem);
+
+    saveToStorage();
+    renderContacts(searchInput.value);
+  }
+
+  draggedIndex = null;
+});
+
+// Initial Render
 renderContacts();
