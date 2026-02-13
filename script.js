@@ -1,59 +1,81 @@
 const form = document.getElementById("contactForm");
-const messageList = document.getElementById("messageList");
+const contactList = document.getElementById("contactList");
 
-// Load messages from localStorage
-let messages = JSON.parse(localStorage.getItem("messages")) || [];
+let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+let editIndex = null;
 
-// Render messages
-function renderMessages() {
-    messageList.innerHTML = "";
+// Render contacts
+function renderContacts() {
+    contactList.innerHTML = "";
 
-    messages.forEach((msg, index) => {
+    contacts.forEach((contact, index) => {
         const div = document.createElement("div");
-        div.className = "border p-4 rounded-lg bg-gray-100";
+        div.className = "p-4 bg-gray-100 rounded-lg";
 
         div.innerHTML = `
-            <p><strong>Name:</strong> ${msg.name}</p>
-            <p><strong>Email:</strong> ${msg.email}</p>
-            <p><strong>Message:</strong> ${msg.message}</p>
-            <button onclick="deleteMessage(${index})"
-                class="mt-2 text-red-600 font-semibold">
-                Delete
-            </button>
+            <p><strong>Name:</strong> ${contact.name}</p>
+            <p><strong>Email:</strong> ${contact.email}</p>
+            <p><strong>Phone:</strong> ${contact.phone}</p>
+            <div class="mt-2 space-x-2">
+                <button onclick="editContact(${index})"
+                    class="px-3 py-1 bg-yellow-400 rounded">
+                    Edit
+                </button>
+                <button onclick="deleteContact(${index})"
+                    class="px-3 py-1 bg-red-500 text-white rounded">
+                    Delete
+                </button>
+            </div>
         `;
 
-        messageList.appendChild(div);
+        contactList.appendChild(div);
     });
+
+    localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
-// Handle form submit
+// Add / Update Contact
 form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
+    const phone = document.getElementById("phone").value.trim();
 
-    if (!name || !email || !message) {
-        alert("Please fill all fields.");
+    if (!name || !email || !phone) {
+        alert("All fields are required.");
         return;
     }
 
-    const newMessage = { name, email, message };
-    messages.push(newMessage);
+    const newContact = { name, email, phone };
 
-    localStorage.setItem("messages", JSON.stringify(messages));
+    if (editIndex === null) {
+        contacts.push(newContact);
+    } else {
+        contacts[editIndex] = newContact;
+        editIndex = null;
+    }
 
-    renderMessages();
     form.reset();
+    renderContacts();
 });
 
-// Delete message
-function deleteMessage(index) {
-    messages.splice(index, 1);
-    localStorage.setItem("messages", JSON.stringify(messages));
-    renderMessages();
+// Delete
+function deleteContact(index) {
+    contacts.splice(index, 1);
+    renderContacts();
 }
 
-// Initial render
-renderMessages();
+// Edit
+function editContact(index) {
+    const contact = contacts[index];
+
+    document.getElementById("name").value = contact.name;
+    document.getElementById("email").value = contact.email;
+    document.getElementById("phone").value = contact.phone;
+
+    editIndex = index;
+}
+
+// Initial Load
+renderContacts();
