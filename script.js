@@ -1,6 +1,5 @@
-// ===== Contact Manager =====
+// ===== Contact Logic Only - No Style Changes =====
 
-// Select elements
 const nameInput = document.getElementById("contact-name");
 const emailInput = document.getElementById("contact-email");
 const phoneInput = document.getElementById("contact-phone");
@@ -11,8 +10,8 @@ const searchInput = document.getElementById("search-contact");
 let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
 let editIndex = null;
 
-// Save to localStorage
-function saveToStorage() {
+// Save contacts to localStorage
+function saveContacts() {
   localStorage.setItem("contacts", JSON.stringify(contacts));
 }
 
@@ -26,9 +25,8 @@ function renderContacts(filter = "") {
       contact.email.toLowerCase().includes(filter.toLowerCase())
     )
     .forEach((contact, index) => {
+
       const li = document.createElement("li");
-      li.className =
-        "bg-white p-4 mb-3 rounded-lg shadow flex justify-between items-center";
       li.setAttribute("draggable", true);
       li.dataset.index = index;
 
@@ -38,16 +36,16 @@ function renderContacts(filter = "") {
           <p><strong>Email:</strong> ${contact.email}</p>
           <p><strong>Phone:</strong> ${contact.phone}</p>
         </div>
-        <div class="space-x-2">
-          <button class="edit-btn bg-yellow-400 px-3 py-1 rounded text-white">Edit</button>
-          <button class="delete-btn bg-red-500 px-3 py-1 rounded text-white">Delete</button>
+        <div>
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
         </div>
       `;
 
       // Delete
       li.querySelector(".delete-btn").addEventListener("click", () => {
         contacts.splice(index, 1);
-        saveToStorage();
+        saveContacts();
         renderContacts(searchInput.value);
       });
 
@@ -65,7 +63,7 @@ function renderContacts(filter = "") {
 }
 
 // Add / Update Contact
-addBtn.addEventListener("click", (e) => {
+addBtn.addEventListener("click", function (e) {
   e.preventDefault();
 
   const name = nameInput.value.trim();
@@ -77,17 +75,17 @@ addBtn.addEventListener("click", (e) => {
     return;
   }
 
-  const contactData = { name, email, phone };
+  const newContact = { name, email, phone };
 
   if (editIndex !== null) {
-    contacts[editIndex] = contactData;
+    contacts[editIndex] = newContact;
     editIndex = null;
     addBtn.textContent = "Add Contact";
   } else {
-    contacts.push(contactData);
+    contacts.push(newContact);
   }
 
-  saveToStorage();
+  saveContacts();
   renderContacts(searchInput.value);
 
   nameInput.value = "";
@@ -95,12 +93,14 @@ addBtn.addEventListener("click", (e) => {
   phoneInput.value = "";
 });
 
-// Search Feature
-searchInput.addEventListener("input", () => {
-  renderContacts(searchInput.value);
-});
+// Search
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    renderContacts(searchInput.value);
+  });
+}
 
-// Drag and Drop Reordering
+// Drag & Drop (No styling changes)
 let draggedIndex = null;
 
 contactList.addEventListener("dragstart", (e) => {
@@ -113,18 +113,21 @@ contactList.addEventListener("dragover", (e) => {
 
 contactList.addEventListener("drop", (e) => {
   e.preventDefault();
-  const targetIndex = e.target.closest("li").dataset.index;
+  const target = e.target.closest("li");
+  if (!target) return;
+
+  const targetIndex = target.dataset.index;
 
   if (draggedIndex !== null && targetIndex !== null) {
     const draggedItem = contacts.splice(draggedIndex, 1)[0];
     contacts.splice(targetIndex, 0, draggedItem);
 
-    saveToStorage();
+    saveContacts();
     renderContacts(searchInput.value);
   }
 
   draggedIndex = null;
 });
 
-// Initial Render
+// Initial render
 renderContacts();
