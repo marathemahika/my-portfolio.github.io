@@ -174,17 +174,31 @@
 
   <!-- Contact Section -->
   <form class="max-w-xl mx-auto">
-  <input id="contact-name" type="text" placeholder="Name" class="block w-full mb-4 p-4 rounded-lg border" />
-  <input id="contact-email" type="email" placeholder="Email" class="block w-full mb-4 p-4 rounded-lg border" />
-  <input id="contact-phone" type="number" placeholder="Phone Number" class="block w-full mb-4 p-4 rounded-lg border" />
-  
-  <button id="add-contact" class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white">
+
+  <input id="contact-name" type="text" placeholder="Your Name"
+         class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
+
+  <input id="contact-email" type="email" placeholder="Your Email"
+         class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
+
+  <!-- Replace textarea with phone input -->
+  <input id="contact-phone" type="number" placeholder="Phone Number"
+         class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
+
+  <button id="add-contact" type="submit"
+          class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white text-lg hover:bg-purple-500">
     Add Contact
   </button>
+
 </form>
 
-<input id="search-contact" type="text" placeholder="Search contacts..." 
-       class="block w-full max-w-xl mx-auto mt-6 mb-4 p-3 rounded-lg border" />
+<!-- Add this BELOW the form, still inside the same contact card -->
+<ul id="contact-list" class="mt-6 space-y-3"></ul>
+
+<input id="search-contact" type="text"
+       placeholder="Search contacts..."
+       class="block w-full mt-4 p-3 rounded-lg border border-gray-300">
+
 
 <ul id="contact-list" class="max-w-xl mx-auto mt-4"></ul>
 
