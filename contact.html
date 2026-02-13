@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Mahika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-indigo-100 via-purple-200 to-indigo-300 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-xl">
+    <h2 class="text-3xl font-bold text-center text-purple-600 mb-6">
+      Contact Me
+    </h2>
+
+    <form id="contactForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Your Name"
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+      <input type="email" id="email" placeholder="Your Email"
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+      <textarea id="message" rows="5" placeholder="Your Message"
+        class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+
+      <button type="submit"
+        class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-500 transition">
+        Send Message
+      </button>
+    </form>
+
+    <div id="successMessage" class="hidden mt-4 text-green-600 font-semibold text-center">
+      Message sent successfully ✨
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      // Simulate sending (since no backend)
+      successMessage.classList.remove("hidden");
+
+      form.reset();
+
+      setTimeout(() => {
+        successMessage.classList.add("hidden");
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
