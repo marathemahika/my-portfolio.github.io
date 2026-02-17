@@ -6,7 +6,12 @@
   <title>Mahika | My Portfolio</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
-  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init({ publicKey: "Ela8dCtJuLkDPWYVj" });
+  })();
+</script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100 text-black">
@@ -179,36 +184,20 @@
     Contact
   </h2>
 
-  <form class="max-w-xl mx-auto">
+  <form id="contact-form" class="max-w-xl mx-auto">
+  <input type="text" name="from_name" id="contact-name" placeholder="Your Name" 
+         class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
 
-    <input id="contact-name"
-      type="text"
-      name="name"
-      placeholder="Your Name"
-      class="block w-full mb-4 p-4 rounded-lg border border-gray-300"
-      required />
+  <input type="email" name="reply_to" id="contact-email" placeholder="Your Email" 
+         class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required />
 
-    <input id="contact-email"
-      type="email"
-      name="email"
-      placeholder="Your Email"
-      class="block w-full mb-4 p-4 rounded-lg border border-gray-300"
-      required />
+  <textarea name="message" id="contact-message" placeholder="Your Message" rows="5"
+            class="block w-full mb-4 p-4 rounded-lg border border-gray-300" required></textarea>
 
-    <input id="contact-phone"
-      type="number"
-      name="phone"
-      placeholder="Phone Number"
-      class="block w-full mb-4 p-4 rounded-lg border border-gray-300"
-      required />
-
-    <button id="add-contact"
-      type="submit"
-      class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white text-lg hover:bg-purple-500">
-      Add Contact
-    </button>
-
-  </form>
+  <button type="submit" class="w-full py-3 px-6 rounded-lg bg-purple-600 text-white text-lg hover:bg-purple-500">
+    Send Message
+  </button>
+</form>
 
   <!-- This does NOT change design -->
   <div id="contact-list" class="max-w-xl mx-auto mt-8"></div>

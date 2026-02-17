@@ -1,30 +1,33 @@
-const form = document.querySelector("#contact form");
-const nameInput = form.querySelector("input[type='text']");
-const emailInput = form.querySelector("input[type='email']");
-const messageInput = form.querySelector("textarea");
+const btn = document.querySelector('#contact-form button');
 
-let contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+  event.preventDefault();
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  btn.innerText = 'Sending...';
 
-  const name = nameInput.value.trim();
-  const email = emailInput.value.trim();
-  const message = messageInput.value.trim();
+  const serviceID = 'service_5o5q7h4';   // Replace with your Service ID
+  const templateID = 'template_1heutht'; // Replace with your Template ID
 
-  if (!name || !email || !message) {
-    alert("All fields are required.");
-    return;
-  }
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.innerText = 'Send Message';
+      
+      // Display info on the page
+      const name = document.getElementById('contact-name').value;
+      const message = document.getElementById('contact-message').value;
+      
+      const contactList = document.getElementById('contact-list');
+      contactList.innerHTML = `
+        <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-green-500 animate-pulse">
+          <h3 class="text-lg font-bold text-purple-600">Thanks, ${name}!</h3>
+          <p class="text-gray-600">Your message has been sent to my inbox.</p>
+          <p class="mt-2 italic text-sm text-gray-500">"${message}"</p>
+        </div>
+      `;
 
-  const newContact = { name, email, message };
-  contacts.push(newContact);
-
-  localStorage.setItem("contacts", JSON.stringify(contacts));
-
-  nameInput.value = "";
-  emailInput.value = "";
-  messageInput.value = "";
-
-  alert("Message stored successfully.");
+      this.reset(); // Clear form fields
+    }, (err) => {
+      btn.innerText = 'Send Message';
+      alert(JSON.stringify(err));
+    });
 });
