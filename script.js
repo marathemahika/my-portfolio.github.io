@@ -49,12 +49,12 @@ window.deleteMessage = function() {
     pendingData = null;
 };
 
-window.sendToEmailJS = function() {
+window.sendToEmailJS = function(event) {
     const confirmBtn = event.target;
     confirmBtn.innerText = "Sending...";
     
     const serviceID = 'service_5o5q7h4'; 
-    const templateID = 'YOUR_TEMPLATE_ID'; // Replace with your ID
+    const templateID = 'template_1heutht'; // Replace with your ID
 
     emailjs.send(serviceID, templateID, pendingData)
         .then(() => {
