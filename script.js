@@ -59,23 +59,35 @@ window.deleteMessage = function() {
 };
 
 // Final send function
-window.sendToEmailJS = function(event) {
+window.sendToEmailJS = async function(event) {
     event.target.innerText = "Sending...";
     
-    const serviceID = 'service_5o5q7h4'; 
-    const templateID = 'template_1heutht'; // Ensure this is your actual ID
+    try {
+        const response = await fetch('http://localhost:5000/api/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pendingData)
+        });
 
-    emailjs.send(serviceID, templateID, pendingData)
-        .then(() => {
+        const result = await response.json();
+
+        if (response.ok) {
             contactList.innerHTML = `
                 <div class="bg-green-100 p-8 rounded-lg text-center border border-green-300">
-                    <h3 class="text-green-800 font-bold text-xl">🚀 Message Sent!</h3>
-                    <p class="text-green-700 mt-2">I'll get back to you shortly.</p>
+                    <h3 class="text-green-800 font-bold text-xl">🚀 Message Saved!</h3>
+                    <p class="text-green-700 mt-2">Your message has been stored in the database.</p>
                     <button onclick="location.reload()" class="mt-4 text-purple-600 font-medium underline">Send another message</button>
                 </div>
             `;
-        }, (err) => {
-            alert("Send failed. Please check your connection.");
+        } else {
+            alert("Save failed: " + (result.error || "Unknown error"));
             event.target.innerText = "Confirm & Send";
-        });
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Send failed. Please check if the backend server is running on port 5000.");
+        event.target.innerText = "Confirm & Send";
+    }
 };
