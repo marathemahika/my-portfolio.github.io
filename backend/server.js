@@ -1,6 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const dns = require('dns');
+
+// Force Node.js to use Google public DNS to bypass ISP blocking of MongoDB queries
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 const cors = require('cors');
 const Message = require('./models/Message');
 
