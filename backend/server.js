@@ -43,7 +43,7 @@ app.post('/api/contact', async (req, res) => {
             return res.status(400).json({ error: messages.join(', ') });
         }
         console.error('Save Error:', err);
-        res.status(500).json({ error: 'Server error. Could not send message.' });
+        res.status(500).json({ error: 'Server error: ' + err.message });
     }
 });
 
